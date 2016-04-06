@@ -1,0 +1,1 @@
+java -cp /Users/christophe/dev/ClientLightDemo/target/ClientLightDemo-1.0-SNAPSHOT-jar-with-dependencies.jar org.occiware.light.ClientTestMain

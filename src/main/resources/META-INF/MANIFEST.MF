@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+implementation-vendor: Inria
+implementation-title: ClientLightDemo
+implementation-version: 1.0
+Created-By: Christophe Gourdin
+Main-Class: org.occiware.light.ClientTestMain
+
