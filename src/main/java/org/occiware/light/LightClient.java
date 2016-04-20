@@ -42,8 +42,15 @@ public class LightClient {
     /*
      * Server address endpoint.
      */
-    public static final String SERVER_ADDRESS_ENDPOINT = "ws://localhost:8025/websocket/light";
+    private String serverAddress = "ws://localhost:8025/websocket/light";
     // TODO : Make a property file to read this.
+
+    public LightClient() {
+    }
+    
+    public LightClient(final String serverAddress) {
+        this.serverAddress = serverAddress;
+    }
 
     /**
      * Connect to server and query for msg.
@@ -59,7 +66,7 @@ public class LightClient {
             client = ClientManager.createClient();
             session = client.connectToServer(
                     endpoint,
-                    URI.create(SERVER_ADDRESS_ENDPOINT)
+                    URI.create(serverAddress)
             );
 
             response = endpoint.getResponse();
