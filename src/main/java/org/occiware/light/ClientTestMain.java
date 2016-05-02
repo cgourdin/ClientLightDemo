@@ -80,12 +80,18 @@ public class ClientTestMain {
         executeActionLight(lightClient, id5, LightClient.SWITCH_OFF, null);
         executeActionLight(lightClient, id7, LightClient.SWITCH_OFF, null);
         
+        // Find the light state :
+        executeActionLight(lightClient, id2, LightClient.RETRIEVE, null);
+        
+        
+        
         // The end...
         // Delete some lights.
         executeActionLight(lightClient, id1, LightClient.DELETE_LIGHT, "sleeping room 1");
         executeActionLight(lightClient, id3, LightClient.DELETE_LIGHT, "sleeping room 2");
         executeActionLight(lightClient, id5, LightClient.DELETE_LIGHT, "sleeping room 3");
         executeActionLight(lightClient, id7, LightClient.DELETE_LIGHT, "sleeping room 4");
+        
         
     }
 
@@ -115,6 +121,10 @@ public class ClientTestMain {
                     break;
                 case LightClient.UPDATE_LIGHT_LOCATION:
                     response = client.updateLightLocation(id, location);
+                    break;
+                case LightClient.RETRIEVE:
+                    response = client.retrieve(id);
+                    log.info("Retrieve a light : " + response);
                     break;
                 default:
                     response = "This command " + action + " doesnt exist.";

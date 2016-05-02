@@ -39,6 +39,10 @@ public class LightClient {
      */
     public static final String SWITCH_OFF = "switchOff";
 
+    /**
+     * Command to find a light.
+     */
+    public static final String RETRIEVE = "retrieve";
     /*
      * Server address endpoint.
      */
@@ -47,7 +51,7 @@ public class LightClient {
 
     public LightClient() {
     }
-    
+
     public LightClient(final String serverAddress) {
         this.serverAddress = serverAddress;
     }
@@ -108,59 +112,81 @@ public class LightClient {
         }
         return response;
     }
-    
-    
+
     /**
      * Create a light on display.
+     *
      * @param id
      * @param location
      * @return A response from server
-     * @throws IOException 
-     * @throws TimeoutException 
+     * @throws IOException
+     * @throws TimeoutException
      */
     public String createLight(final String id, final String location) throws IOException, TimeoutException {
         return this.sendMessage(id + ";" + CREATE_LIGHT + ";" + location);
     }
+
     /**
      * Remove a light from display.
+     *
      * @param id
      * @return
      * @throws IOException
-     * @throws TimeoutException 
+     * @throws TimeoutException
      */
     public String deleteLight(final String id) throws IOException, TimeoutException {
         return this.sendMessage(id + ";" + DELETE_LIGHT);
     }
+
     /**
      * Update light location (ex: dining room).
+     *
      * @param id
      * @param location
      * @return
      * @throws IOException
-     * @throws TimeoutException 
+     * @throws TimeoutException
      */
     public String updateLightLocation(final String id, final String location) throws IOException, TimeoutException {
         return this.sendMessage(id + ";" + UPDATE_LIGHT_LOCATION + ";" + location);
     }
+
     /**
      * Turn light on.
+     *
      * @param id
      * @return "ok" if no error.
      * @throws IOException
-     * @throws TimeoutException 
+     * @throws TimeoutException
      */
     public String switchOn(final String id) throws IOException, TimeoutException {
         return this.sendMessage(id + ";" + SWITCH_ON);
     }
+
     /**
      * Turn light off.
+     *
      * @param id
      * @return "ok" if no error.
      * @throws IOException
-     * @throws TimeoutException 
+     * @throws TimeoutException
      */
     public String switchOff(final String id) throws IOException, TimeoutException {
         return this.sendMessage(id + ";" + SWITCH_OFF);
     }
-    
+
+    /**
+     * Find an existing light.
+     *
+     * @param id
+     * @return if the light doesnt exist, this will return a null value. Note
+     * that if the resource exist, this will return a string with format :
+     * id;location;State.
+     * @throws IOException
+     * @throws TimeoutException
+     */
+    public String retrieve(final String id) throws IOException, TimeoutException {
+        return this.sendMessage(id + ";" + RETRIEVE);
+    }
+
 }
